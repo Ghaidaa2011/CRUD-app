@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,7 +13,9 @@ const Header = () => {
         <li>
           <NavLink to="post/add">Add Post</NavLink>
         </li>
-        <li className="login">login</li>
+        <li className="login">
+          <Link to="post/login">Login</Link>
+        </li>
       </ul>
     </div>
   );

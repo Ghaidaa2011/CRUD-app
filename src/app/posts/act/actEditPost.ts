@@ -1,15 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../services/axios-global"
 import { TPost } from "../../../types/post";
 import AxiosErrorHandler from "../../../utils/AxiosErrorHandler";
 
-const actEditPost = createAsyncThunk<TPost, TPost>("posts/actEditPost", async(post, thunkAPI)=>{
-  const {rejectWithValue} = thunkAPI;
+const actEditPost = createAsyncThunk<TPost, TPost>("posts/actEditPost", async (post, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
   try {
-    const response = await axios.patch(`http://localhost:3010/posts/${post.id}`, post);
+    const response = await axios.patch(`/posts/${post.id}`, post);
     return response.data;
-    } catch (error) {
-      return rejectWithValue(AxiosErrorHandler(error));
+  } catch (error) {
+    return rejectWithValue(AxiosErrorHandler(error));
 
   }
 });

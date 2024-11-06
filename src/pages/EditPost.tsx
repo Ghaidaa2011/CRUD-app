@@ -5,10 +5,10 @@ import { useAppDispatch } from "../app/hooks";
 import { useNavigate } from "react-router-dom";
 import { actEditPost, cleanPostInfo } from "../app/posts/postsSlice";
 import WithGuard from "../utils/WithGuard";
-import { addPostSchema, addPostType } from "../validations/addPostSchema";
+import { addPostSchema, addPostTypeSchema } from "../validations/addPostSchema";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "../components/form/Input";
+import Input from "../components/ui/Input";
 import { Form, Button } from "react-bootstrap";
 
 const EditPost = () => {
@@ -20,7 +20,7 @@ const EditPost = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<addPostType>({
+  } = useForm<addPostTypeSchema>({
     mode: "onBlur",
     resolver: zodResolver(addPostSchema),
   });
@@ -35,7 +35,7 @@ const EditPost = () => {
       dispatch(cleanPostInfo());
     };
   }, [dispatch]);
-  const submitForm: SubmitHandler<addPostType> = (post) =>
+  const submitForm: SubmitHandler<addPostTypeSchema> = (post) =>
     dispatch(
       actEditPost({
         id: postInfo?.id,

@@ -10,9 +10,9 @@ const PostListItem = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
       deletePost(post.id);
     }
   };
-  const data = posts.map((post, inx) => (
+  const data = posts.map((post, index) => (
     <tr key={post.id}>
-      <td>#{inx++}</td>
+      <td>#{++index}</td>
       <td>
         <Link to={`/post/${post.id}`}>{post.title}</Link>
       </td>

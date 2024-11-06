@@ -7,7 +7,10 @@ type TLoadingProps = {
   children: React.ReactNode;
 };
 const Loading = ({ loading, error, children }: TLoadingProps) => {
-  const elementType = (children as ReactElement)?.type?.render?.displayName;
+  const elementType =
+    React.isValidElement(children) && typeof children.type === "function"
+      ? (children.type as React.FunctionComponent).displayName
+      : undefined;
   const renderHandler = () => {
     if (elementType === "Button") {
       const cloneButton = React.cloneElement(

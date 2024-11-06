@@ -16,7 +16,7 @@ const Details = () => {
     <>
       <Loading loading={loading} error={error}>
         <p>Title: {postInfo?.title}</p>
-        <p>Title: {postInfo?.description}</p>
+        <p>Description: {postInfo?.description}</p>
       </Loading>
     </>
   );

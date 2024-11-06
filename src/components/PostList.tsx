@@ -1,6 +1,5 @@
 import { Table } from "react-bootstrap";
 import PostListItem from "./PostListItem";
-import { memo } from "react";
 import { TPostProps } from "../types/poststate";
 
 const PostList = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
@@ -25,5 +24,4 @@ const PostList = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
     </>
   );
 };
-const MemoizedPostList = memo(PostList);
-export default MemoizedPostList;
+export default PostList;

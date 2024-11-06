@@ -1,5 +1,5 @@
 export type TPost = {
-  id?: number | string | undefined;
+  id?: string | undefined;
   title: string;
   description: string;
   userName?: string;

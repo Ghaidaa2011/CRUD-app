@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../services/axios-global"
 import AxiosErrorHandler from "../../../utils/AxiosErrorHandler";
 
-const actDeletePost = createAsyncThunk("posts/actDeletePost", async(id:string,thunkAPI)=>{
-  const {rejectWithValue} = thunkAPI;
+const actDeletePost = createAsyncThunk("posts/actDeletePost", async (id: string, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
   try {
-    await axios.delete(`http://localhost:3010/posts/${id}`);
+    await axios.delete(`/posts/${id}`);
     return id;
   } catch (error) {
     return rejectWithValue(AxiosErrorHandler(error));

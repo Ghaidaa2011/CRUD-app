@@ -1,7 +1,7 @@
-import { addPostSchema, addPostType } from "../validations/addPostSchema";
+import { addPostSchema, addPostTypeSchema } from "../validations/addPostSchema";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "../components/form/Input";
+import Input from "../components/ui/Input";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { actInsertPost } from "../app/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
@@ -17,13 +17,15 @@ const AddPost = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<addPostType>({
+  } = useForm<addPostTypeSchema>({
     mode: "onBlur",
     resolver: zodResolver(addPostSchema),
   });
-  const submitForm: SubmitHandler<addPostType> = (post) =>
+  const submitForm: SubmitHandler<addPostTypeSchema> = (post) => {
+    const id = Math.floor(Math.random() * 500).toString();
     dispatch(
       actInsertPost({
+        id: id,
         title: post.title,
         description: post.description,
       })
@@ -35,6 +37,7 @@ const AddPost = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
   return (
     <Form onSubmit={handleSubmit(submitForm)}>
       <Input

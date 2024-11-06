@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import PostList from "../components/PostList";
 import { actDeletePost, actGetPost } from "../app/posts/postsSlice";
@@ -11,12 +11,10 @@ const Index = () => {
   useEffect(() => {
     dispatch(actGetPost());
   }, [dispatch]);
-  const deletePost = useCallback(
-    (id: number) => {
-      dispatch(actDeletePost(id));
-    },
-    [dispatch]
-  );
+
+  const deletePost = (id: string) => {
+    dispatch(actDeletePost(id));
+  };
   return (
     <>
       <Loading loading={loading} error={error}>

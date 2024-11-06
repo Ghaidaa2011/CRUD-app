@@ -23,7 +23,7 @@ const Error = () => {
               variant="link"
               onClick={() => navigate("/", { replace: true })}
             >
-              Link
+              Home
             </Button>
           </div>
         </Col>
