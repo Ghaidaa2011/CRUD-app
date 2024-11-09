@@ -5,23 +5,33 @@ import actAuthLogin from "./act/actAuthLogin";
 import { isString } from "../../types/guards";
 
 interface IAuthState {
+  user: {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+  } | null;
+  accessToken: string | null;
   loading: TLoading;
   error: string | null;
-  name: string;
-  isLoggedIn: boolean;
 }
 const initialState: IAuthState = {
+  user: null,
+  accessToken: null,
   loading: "idle",
   error: null,
-  name: "Ghaidaa",
-  isLoggedIn: true,
 };
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logInOut: (state) => {
-      state.isLoggedIn = !state.isLoggedIn;
+    resetUI: (state) => {
+      state.loading = "idle";
+      state.error = null;
+    },
+    authLogout: (state) => {
+      state.user = null;
+      state.accessToken = null;
     }
   },
   extraReducers: (builder) => {
@@ -44,8 +54,10 @@ const authSlice = createSlice({
       state.loading = "pending";
       state.error = null;
     });
-    builder.addCase(actAuthLogin.fulfilled, (state) => {
+    builder.addCase(actAuthLogin.fulfilled, (state, action) => {
       state.loading = "succeeded";
+      state.accessToken = action.payload.accessToken;
+      state.user = action.payload.user;
     });
     builder.addCase(actAuthLogin.rejected, (state, action) => {
       state.loading = "failed";
@@ -55,6 +67,6 @@ const authSlice = createSlice({
     })
   }
 });
-export const { logInOut } = authSlice.actions;
+export const { resetUI, authLogout } = authSlice.actions;
 export { actAuthRegister, actAuthLogin };
 export default authSlice.reducer;

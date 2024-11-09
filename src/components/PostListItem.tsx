@@ -3,11 +3,11 @@ import { TPostProps } from "../types/poststate";
 import { TPost } from "../types/post";
 import { Link, useNavigate } from "react-router-dom";
 
-const PostListItem = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
+const PostListItem = ({ posts, deletePost }: TPostProps) => {
   const navigate = useNavigate();
   const deleteHandler = (post: TPost) => {
     if (window.confirm(`Do you really wanna delete book: ${post.title}`)) {
-      deletePost(post.id);
+      deletePost(post.id as string);
     }
   };
   const data = posts.map((post, index) => (
@@ -27,7 +27,7 @@ const PostListItem = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
           <Button
             variant="danger"
             onClick={() => deleteHandler(post)}
-            disabled={!isLoggedIn}
+            // disabled={!isLoggedIn}
           >
             Delete
           </Button>

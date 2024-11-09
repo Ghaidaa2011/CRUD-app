@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { actAuthLogin,/* resetUI*/ } from "../app/auth/authSlice";
+import { actAuthLogin, resetUI } from "../app/auth/authSlice";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +13,7 @@ const useLogin = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { error, loading,/* accessToken */ } = useAppSelector((state) => state.auth);
+  const { error, loading, accessToken } = useAppSelector((state) => state.auth);
 
   const {
     register,
@@ -25,7 +25,7 @@ const useLogin = () => {
   });
 
   const submitForm: SubmitHandler<signInType> = async (data) => {
-    if (searchParams.get("message")) {
+    if (searchParams.get("message") === "account_created") {
       setSearchParams("");
     }
     dispatch(actAuthLogin(data))
@@ -37,14 +37,14 @@ const useLogin = () => {
 
   useEffect(() => {
     return () => {
-      // dispatch(resetUI());
+      dispatch(resetUI());
     };
   }, [dispatch]);
 
   return {
     error,
     loading,
-    // accessToken,
+    accessToken,
     formErrors,
     searchParams,
     register,

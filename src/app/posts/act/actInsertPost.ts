@@ -2,14 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../../services/axios-global"
 import { TPost } from "../../../types/post";
 import AxiosErrorHandler from "../../../utils/AxiosErrorHandler";
-interface State {
-  auth: {
-    name: string;
-  };
-}
-const actInsertPost = createAsyncThunk<TPost, TPost, { state: State }>("posts/actInsertPost", async (post, thunkAPI) => {
-  const { rejectWithValue, getState } = thunkAPI;
-  post.userName = getState().auth.name;
+// interface State {
+//   auth: {
+//     name: string;
+//   };
+// }
+const actInsertPost = createAsyncThunk<TPost, TPost/*, { state: State }*/>("posts/actInsertPost", async (post, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
   try {
     const response = await axios.post("/posts", post);
     return response.data;

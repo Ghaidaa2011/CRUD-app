@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { actInsertPost } from "../app/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
-import WithGuard from "../utils/WithGuard";
+// import WithGuard from "../utils/WithGuard";
 import { Form, Button } from "react-bootstrap";
 
 const AddPost = () => {
@@ -64,5 +64,6 @@ const AddPost = () => {
     </Form>
   );
 };
-const ProtectAddPost = WithGuard(AddPost);
-export default ProtectAddPost;
+// const ProtectAddPost = WithGuard(AddPost);
+// export default ProtectAddPost;
+export default AddPost;
