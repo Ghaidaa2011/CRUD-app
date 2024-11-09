@@ -11,6 +11,7 @@ import Error from "../pages/Error";
 //lazy load
 import { Suspense, lazy } from "react";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const AddPost = lazy(() => import("../pages/AddPost"));
 const EditPost = lazy(() => import("../pages/EditPost"));
@@ -64,7 +65,15 @@ const router = createBrowserRouter([
         loader: postParamHandler,
       },
       {
-        path: "post/login",
+        path: "signup",
+        element: (
+          <Suspense fallback="Loading, please wait...">
+            <Register />
+          </Suspense>
+        ),
+      },
+      {
+        path: "login",
         element: (
           <Suspense fallback="Loading, please wait...">
             <Login />
