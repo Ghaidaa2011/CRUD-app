@@ -2,10 +2,15 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authLogout } from "../app/auth/authSlice";
+import { cleanPosts } from "../app/posts/postsSlice";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const { accessToken, user } = useAppSelector((state) => state.auth);
+  const handleLogout = () => {
+    dispatch(authLogout());
+    dispatch(cleanPosts());
+  };
   return (
     <>
       <h1>CRUD APP</h1>
@@ -49,11 +54,7 @@ const Header = () => {
                       Profile
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item
-                      as={Link}
-                      to="/"
-                      onClick={() => dispatch(authLogout())}
-                    >
+                    <NavDropdown.Item as={Link} to="/" onClick={handleLogout}>
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>

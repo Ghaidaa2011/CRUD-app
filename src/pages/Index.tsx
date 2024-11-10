@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import PostList from "../components/PostList";
-import { actDeletePost, actGetPost } from "../app/posts/postsSlice";
+import { actDeletePost, actGetPost, cleanPosts } from "../app/posts/postsSlice";
 import Loading from "../components/Loading";
 
 const Index = () => {
@@ -10,6 +10,11 @@ const Index = () => {
   const { accessToken } = useAppSelector((state) => state.auth);
   useEffect(() => {
     dispatch(actGetPost());
+  }, [dispatch]);
+  useEffect(() => {
+    return () => {
+      dispatch(cleanPosts());
+    };
   }, [dispatch]);
 
   const deletePost = (id: string) => {

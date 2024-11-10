@@ -24,9 +24,7 @@ const Login = () => {
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           {searchParams.get("message") === "login_required" && (
-            <Alert variant="success">
-              You need to log in to view this content
-            </Alert>
+            <Alert variant="success">You need to log in to add a post</Alert>
           )}
           {searchParams.get("message") === "account_created" && (
             <Alert variant="success">

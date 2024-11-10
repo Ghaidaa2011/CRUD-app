@@ -1,7 +1,9 @@
 import { Table } from "react-bootstrap";
 import WithGuard from "../utils/WithGuard";
+import { useAppSelector } from "../app/hooks";
 
 const Profile = () => {
+  const profileInfo = useAppSelector((state) => state.auth.user);
   return (
     <Table bordered hover>
       <thead>
@@ -12,8 +14,8 @@ const Profile = () => {
       </thead>
       <tbody>
         <tr>
-          <td>Mark</td>
-          <td>Mako</td>
+          <td>{profileInfo?.firstName}</td>
+          <td>{profileInfo?.lastName}</td>
         </tr>
       </tbody>
     </Table>
