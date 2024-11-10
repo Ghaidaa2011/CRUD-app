@@ -12,6 +12,7 @@ import Error from "../pages/Error";
 import { Suspense, lazy } from "react";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Profile from "../pages/Profile";
 
 const AddPost = lazy(() => import("../pages/AddPost"));
 const EditPost = lazy(() => import("../pages/EditPost"));
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback="Loading, please wait...">
             <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <Suspense fallback="Loading, please wait...">
+            <Profile />
           </Suspense>
         ),
       },

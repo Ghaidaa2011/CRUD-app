@@ -3,7 +3,7 @@ import { TPostProps } from "../types/poststate";
 import { TPost } from "../types/post";
 import { Link, useNavigate } from "react-router-dom";
 
-const PostListItem = ({ posts, deletePost }: TPostProps) => {
+const PostListItem = ({ posts, deletePost, accessToken }: TPostProps) => {
   const navigate = useNavigate();
   const deleteHandler = (post: TPost) => {
     if (window.confirm(`Do you really wanna delete book: ${post.title}`)) {
@@ -21,13 +21,14 @@ const PostListItem = ({ posts, deletePost }: TPostProps) => {
           <Button
             variant="success"
             onClick={() => navigate(`post/${post.id}/edit`)}
+            // disabled={!accessToken}
           >
             Edit
           </Button>
           <Button
             variant="danger"
             onClick={() => deleteHandler(post)}
-            // disabled={!isLoggedIn}
+            disabled={!accessToken}
           >
             Delete
           </Button>

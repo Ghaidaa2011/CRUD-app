@@ -25,7 +25,7 @@ const useLogin = () => {
   });
 
   const submitForm: SubmitHandler<signInType> = async (data) => {
-    if (searchParams.get("message") === "account_created") {
+    if (searchParams.get("message")) {
       setSearchParams("");
     }
     dispatch(actAuthLogin(data))

@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 import PostListItem from "./PostListItem";
 import { TPostProps } from "../types/poststate";
 
-const PostList = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
+const PostList = ({ posts, deletePost, accessToken }: TPostProps) => {
   return (
     <>
       <Table striped bordered hover>
@@ -17,7 +17,7 @@ const PostList = ({ posts, deletePost, isLoggedIn }: TPostProps) => {
           <PostListItem
             posts={posts}
             deletePost={deletePost}
-            isLoggedIn={isLoggedIn}
+            accessToken={accessToken}
           />
         </tbody>
       </Table>

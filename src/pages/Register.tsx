@@ -1,4 +1,4 @@
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useRegister from "../hooks/use-Register";
 import FormInput from "../components/ui/FormInput";
 import { Form, Button, Row, Col, Spinner } from "react-bootstrap";
@@ -7,7 +7,7 @@ const Register = () => {
   const {
     loading,
     error,
-    // accessToken,
+    accessToken,
     formErrors,
     emailAvailabilityStatus,
     submitForm,
@@ -16,9 +16,9 @@ const Register = () => {
     emailOnBlurHandler,
   } = useRegister();
 
-  // if (accessToken) {
-  //   return <Navigate to="/" />;
-  // }
+  if (accessToken) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       <h1>User Registration</h1>

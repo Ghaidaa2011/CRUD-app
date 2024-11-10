@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 const Index = () => {
   const dispatch = useAppDispatch();
   const { posts, loading, error } = useAppSelector((state) => state.posts);
-  // const { isLoggedIn } = useAppSelector((state) => state.auth);
+  const { accessToken } = useAppSelector((state) => state.auth);
   useEffect(() => {
     dispatch(actGetPost());
   }, [dispatch]);
@@ -21,7 +21,7 @@ const Index = () => {
         <PostList
           posts={posts}
           deletePost={deletePost}
-          // isLoggedIn={isLoggedIn}
+          accessToken={accessToken}
         />
       </Loading>
     </>

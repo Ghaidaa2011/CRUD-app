@@ -4,7 +4,7 @@ import usePostDetails from "../hooks/use-post-details";
 import { useAppDispatch } from "../app/hooks";
 import { useNavigate } from "react-router-dom";
 import { actEditPost, cleanPostInfo } from "../app/posts/postsSlice";
-// import WithGuard from "../utils/WithGuard";
+import WithGuard from "../utils/WithGuard";
 import { addPostSchema, addPostTypeSchema } from "../validations/addPostSchema";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -78,6 +78,5 @@ const EditPost = () => {
     </>
   );
 };
-// const ProtectedEditPost = WithGuard(EditPost);
-// export default ProtectedEditPost;
-export default EditPost;
+const ProtectedEditPost = WithGuard(EditPost);
+export default ProtectedEditPost;

@@ -45,12 +45,11 @@ const Header = () => {
                     title={`Welcome ${user?.firstName}`}
                     id="basic-nav-dropdown"
                   >
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item as={Link} to="/profile">
                       Profile
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
-                      href="#action/3.4"
                       as={Link}
                       to="/"
                       onClick={() => dispatch(authLogout())}

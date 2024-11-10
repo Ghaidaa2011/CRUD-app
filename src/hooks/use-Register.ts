@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { actAuthRegister /*, resetUI*/ } from "../app/auth/authSlice";
+import { actAuthRegister, resetUI } from "../app/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form";
@@ -8,13 +8,14 @@ import { SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema, signUpType } from "../validations/signUpSchema";
 import useCheckEmailAvailability from "./use-Check-Email-Availability";
+import { useEffect } from "react";
 
 const useRegister = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
-  const { loading, error /*, accessToken */ } = useAppSelector((state) => state.auth);
+  const { loading, error, accessToken } = useAppSelector((state) => state.auth);
 
   const {
     register,
@@ -58,16 +59,16 @@ const useRegister = () => {
     }
   };
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(resetUI());
-  //   };
-  // }, [dispatch]);
+  useEffect(() => {
+    return () => {
+      dispatch(resetUI());
+    };
+  }, [dispatch]);
 
   return {
     loading,
     error,
-    // accessToken,
+    accessToken,
     formErrors,
     emailAvailabilityStatus,
     submitForm,
