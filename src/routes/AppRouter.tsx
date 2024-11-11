@@ -9,10 +9,11 @@ import RootLayout from "../layouts/RootLayout";
 import Index from "../pages/Index";
 import Error from "../pages/Error";
 //lazy load
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
+import PageSuspenseFallback from "../components/feedback/PageSuspenseFallback/PageSuspenseFallback";
 
 const AddPost = lazy(() => import("../pages/AddPost"));
 const EditPost = lazy(() => import("../pages/EditPost"));
@@ -42,51 +43,51 @@ const router = createBrowserRouter([
       {
         path: "post/add",
         element: (
-          <Suspense fallback="Loading, please wait...">
+          <PageSuspenseFallback>
             <AddPost />
-          </Suspense>
+          </PageSuspenseFallback>
         ),
       },
       {
         path: "post/:id",
         element: (
-          <Suspense fallback="Loading, please wait...">
+          <PageSuspenseFallback>
             <Details />
-          </Suspense>
+          </PageSuspenseFallback>
         ),
         loader: postParamHandler,
       },
       {
         path: "post/:id/edit",
         element: (
-          <Suspense fallback="Loading, please wait...">
+          <PageSuspenseFallback>
             <EditPost />
-          </Suspense>
+          </PageSuspenseFallback>
         ),
         loader: postParamHandler,
       },
       {
         path: "signup",
         element: (
-          <Suspense fallback="Loading, please wait...">
+          <PageSuspenseFallback>
             <Register />
-          </Suspense>
+          </PageSuspenseFallback>
         ),
       },
       {
         path: "login",
         element: (
-          <Suspense fallback="Loading, please wait...">
+          <PageSuspenseFallback>
             <Login />
-          </Suspense>
+          </PageSuspenseFallback>
         ),
       },
       {
         path: "profile",
         element: (
-          <Suspense fallback="Loading, please wait...">
+          <PageSuspenseFallback>
             <Profile />
-          </Suspense>
+          </PageSuspenseFallback>
         ),
       },
     ],

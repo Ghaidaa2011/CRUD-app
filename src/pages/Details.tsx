@@ -1,14 +1,24 @@
-import Loading from "../components/Loading";
+import { Badge } from "react-bootstrap";
 import usePostDetails from "../hooks/use-post-details";
 
 const Details = () => {
-  const { loading, error, postInfo } = usePostDetails();
+  const { postInfo } = usePostDetails();
   return (
     <>
-      <Loading loading={loading} error={error}>
-        <p>Title: {postInfo?.title}</p>
-        <p>Description: {postInfo?.description}</p>
-      </Loading>
+      <div className="mb-3">
+        <h3>
+          <Badge bg="secondary" className="me-3">
+            Title:{" "}
+          </Badge>
+          {postInfo?.title}
+        </h3>
+      </div>
+      <h3>
+        <Badge bg="secondary" className="me-3">
+          Description:
+        </Badge>
+        {postInfo?.description}
+      </h3>
     </>
   );
 };

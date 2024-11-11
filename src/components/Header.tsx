@@ -13,7 +13,7 @@ const Header = () => {
   };
   return (
     <>
-      <h1>CRUD APP</h1>
+      <h1>Posts APP</h1>
       <Navbar
         expand="lg"
         className="bg-body-tertiary mb-5"
@@ -65,39 +65,6 @@ const Header = () => {
         </Container>
       </Navbar>
     </>
-    // <div className="header">
-    //   <h1>CRUD APP</h1>
-    //   <ul className="nav">
-    //     <li>
-    //       <NavLink to="/" end>
-    //         Home
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to="post/add">Add Post</NavLink>
-    //     </li>
-    //     {!accessToken ? (
-    //       <>
-    //         <li className="login">
-    //           <Link to="/login">Login</Link>
-    //         </li>
-    //         <li className="register">
-    //           <Link to="/signup">Signup</Link>
-    //         </li>
-    //       </>
-    //     ) : (
-    //       <>
-    //         <li>
-    //           <NavDropdown title="Welcome" id="basic-nav-dropdown">
-    //             <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-    //             <NavDropdown.Divider />
-    //             <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-    //           </NavDropdown>
-    //         </li>
-    //       </>
-    //     )}
-    //   </ul>
-    // </div>
   );
 };
 

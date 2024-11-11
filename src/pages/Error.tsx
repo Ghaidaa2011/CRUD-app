@@ -1,33 +1,19 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { useRouteError, useNavigate } from "react-router-dom";
-
-interface RouteError {
-  statusText: string;
-  message: string;
-}
+import LottieHandler from "../components/feedback/LottieHandler/LottieHandler";
+import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 const Error = () => {
-  const error = useRouteError() as RouteError;
-  const navigate = useNavigate();
   return (
     <Container>
-      <Row>
-        <Col xs={{ span: 8, offset: 2 }}>
-          <div className="mt-5 text-center">
-            <h1>Oops!</h1>
-            <p>Sorry, an unexpected error has occurred.</p>
-            <p>
-              <i>{error.statusText || error.message}</i>
-            </p>
-            <Button
-              variant="link"
-              onClick={() => navigate("/", { replace: true })}
-            >
-              Home
-            </Button>
-          </div>
-        </Col>
-      </Row>
+      <div
+        className="d-flex flex-column align-items-center"
+        style={{ marginTop: "15%" }}
+      >
+        <LottieHandler type="notFound" />
+        <Link to="/" replace={true}>
+          How about going back to safety?
+        </Link>
+      </div>
     </Container>
   );
 };

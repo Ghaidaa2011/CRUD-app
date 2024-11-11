@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
 import { TLoading } from "../types/shared";
+import TableSkeleton from "./feedback/skeletons/TableSkeleton";
+import LottieHandler from "./feedback/LottieHandler/LottieHandler";
 
 type TLoadingProps = {
   loading: TLoading;
@@ -39,10 +41,12 @@ const Loading = ({ loading, error, children }: TLoadingProps) => {
     return (
       <>
         {loading === "pending" ? (
-          <p>Loading, please wait...</p>
+          <TableSkeleton />
         ) : loading === "failed" ? (
           <>
-            <p>{error}</p>
+            <div>
+              <LottieHandler type="error" message={error as string} />
+            </div>
           </>
         ) : (
           children

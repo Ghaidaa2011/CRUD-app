@@ -5,14 +5,14 @@ import Input from "../components/ui/Input";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { actInsertPost } from "../app/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 import WithGuard from "../utils/WithGuard";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 
 const AddPost = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useAppSelector((state) => state.posts);
+  const { loading /*error */ } = useAppSelector((state) => state.posts);
   const {
     register,
     handleSubmit,
@@ -39,6 +39,7 @@ const AddPost = () => {
       });
   };
   return (
+    // <Loading loading={loading} error={error}>
     <Form onSubmit={handleSubmit(submitForm)}>
       <Input
         label="Title"
@@ -56,12 +57,17 @@ const AddPost = () => {
         as="textarea"
         rows={5}
       />
-      <Loading loading={loading} error={error}>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Loading>
+      <Button variant="primary" type="submit">
+        {loading === "idle" || loading === "pending" ? (
+          <>
+            <Spinner animation="border" size="sm"></Spinner> Submitting...
+          </>
+        ) : (
+          "Submit"
+        )}
+      </Button>
     </Form>
+    // </Loading>
   );
 };
 const ProtectAddPost = WithGuard(AddPost);

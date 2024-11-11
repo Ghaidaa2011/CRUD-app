@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Loading from "../components/Loading";
 import usePostDetails from "../hooks/use-post-details";
 import { useAppDispatch } from "../app/hooks";
 import { useNavigate } from "react-router-dom";
@@ -9,10 +8,10 @@ import { addPostSchema, addPostTypeSchema } from "../validations/addPostSchema";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../components/ui/Input";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 
 const EditPost = () => {
-  const { loading, error, postInfo } = usePostDetails();
+  const { loading, postInfo } = usePostDetails();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -69,11 +68,15 @@ const EditPost = () => {
           as="textarea"
           rows={5}
         />
-        <Loading loading={loading} error={error}>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Loading>
+        <Button variant="primary" type="submit">
+          {loading === "idle" || loading === "pending" ? (
+            <>
+              <Spinner animation="border" size="sm"></Spinner> Submitting...
+            </>
+          ) : (
+            "Submit"
+          )}
+        </Button>
       </Form>
     </>
   );
